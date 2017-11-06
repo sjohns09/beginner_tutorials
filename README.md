@@ -16,12 +16,12 @@ This tutorial also demonstrates how a ROS service works to expect a message and 
  - Clone repo (https://github.com/sjohns09/beginner_tutorials.git) to catkin workspace using
  - In catkin workspace root directory, run catkin_make. This will build the "beginner__tutorials" project.
  
- ---
+ ```
  cd ~/catkin_ws/src
  git clone https://github.com/sjohns09/beginner_tutorials.git
  cd ~/catkin_ws
  catkin_make
- ---
+ ```
 
 ## Run
 
