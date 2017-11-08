@@ -19,16 +19,14 @@
    * @param Input is the message that is received on the topic
    */
 void chatterCallback(const std_msgs::String::ConstPtr& msg) {
-
   ROS_INFO("I heard: %s", msg->data.c_str());
 
-  if (msg->data.at(0) == '.' ) {
+  if (msg->data.at(0) == '.') {
     ROS_ERROR("Can't interpret a message from the upside-down!");
   }
 }
 
 int main(int argc, char **argv) {
-
   ros::init(argc, argv, "listener");
 
   ros::NodeHandle n;

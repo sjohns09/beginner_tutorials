@@ -19,15 +19,15 @@
 #include "beginner_tutorials/StringFlip.h"
 
 int main(int argc, char **argv) {
-
   ros::init(argc, argv, "talker");
+
   ros::NodeHandle n;
 
   double loopRate;
 
   ros::NodeHandle private_node_handle_("~");
 
-  private_node_handle_.param("loopRate", loopRate, double(1));
+  private_node_handle_.param("loopRate", loopRate, static_cast<double>(1));
 
   ros::ServiceClient client = n.serviceClient<beginner_tutorials::StringFlip>(
       "string_flip");
@@ -43,7 +43,6 @@ int main(int argc, char **argv) {
 
   int count = 0;
   while (ros::ok()) {
-
     if (client.call(srv)) {
       ROS_INFO("Calling Service StringFlip");
       flippedString = srv.response.output;
