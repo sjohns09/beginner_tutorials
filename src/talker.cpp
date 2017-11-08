@@ -40,7 +40,7 @@ int main(int argc, char **argv) {
   while (ros::ok()) {
 
     if (client.call(srv)) {
-      ROS_INFO("Calling Service");
+      ROS_INFO("Calling Service StringFlip");
       flippedString = srv.response.output;
       srv.request.input = flippedString;
     } else {
@@ -51,10 +51,10 @@ int main(int argc, char **argv) {
     std_msgs::String msg;
 
     std::stringstream ss;
-    ss << flippedString << count;
+    ss << flippedString << " [" << count << "]";
     msg.data = ss.str();
 
-    ROS_INFO("%s", msg.data.c_str());
+    ROS_INFO("Message to send: %s", msg.data.c_str());
 
     if (flippedString != "Something Strange is Coming...") {
       ROS_WARN("Sending a message from the upside-down");

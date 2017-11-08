@@ -13,12 +13,10 @@
 
 void chatterCallback(const std_msgs::String::ConstPtr& msg) {
 
-  //std::string str = msg->data.c_str();
+  ROS_INFO("I heard: %s", msg->data.c_str());
 
-  if (msg->data.at(0) != 'S' ) {
-    ROS_ERROR("I heard a message from the upside-down: [%s]", msg->data.c_str());
-  } else {
-    ROS_INFO("I heard: [%s]", msg->data.c_str());
+  if (msg->data.at(0) == '.' ) {
+    ROS_ERROR("Can't interpret a message from the upside-down!");
   }
 }
 

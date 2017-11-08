@@ -21,7 +21,6 @@ bool string_flip(beginner_tutorials::StringFlip::Request &req,
   res.output = str;
 
   return true;
-
 }
 
 int main(int argc, char **argv) {
