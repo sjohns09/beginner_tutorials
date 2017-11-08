@@ -1,11 +1,15 @@
 /** @file talker.cpp
- * @brief This tutorial demonstrates the simple sending of messages over the ROS system.
+ * @brief This tutorial demonstrates the simple sending of
+ * messages over the ROS system.
  *
  * @author Samantha Johnson
- * @date October 31, 2017
+ * @date November 7, 2017
  * @copyright (c) 2017, Samantha Johnson
+ * @license BSD 3-Clause License
  *
  * @details This is the node that publishes messages to a topic.
+ * It also calls the service StringFlip on the message before it
+ * publishes that message.
  */
 
 #include <sstream>
@@ -13,7 +17,6 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "beginner_tutorials/StringFlip.h"
-
 
 int main(int argc, char **argv) {
 
@@ -26,7 +29,8 @@ int main(int argc, char **argv) {
 
   private_node_handle_.param("loopRate", loopRate, double(1));
 
-  ros::ServiceClient client = n.serviceClient<beginner_tutorials::StringFlip>("string_flip");
+  ros::ServiceClient client = n.serviceClient<beginner_tutorials::StringFlip>(
+      "string_flip");
 
   beginner_tutorials::StringFlip srv;
   std::string flippedString;
