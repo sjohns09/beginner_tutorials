@@ -1,15 +1,8 @@
-./src/listener.cpp:22:  Redundant blank line at the start of a code block should be deleted.  [whitespace/blank_line] [2]
-./src/listener.cpp:25:  Mismatching spaces inside () in if  [whitespace/parens] [5]
-./src/listener.cpp:31:  Redundant blank line at the start of a code block should be deleted.  [whitespace/blank_line] [2]
 Done processing ./src/listener.cpp
-./src/talker.cpp:22:  Redundant blank line at the start of a code block should be deleted.  [whitespace/blank_line] [2]
-./src/talker.cpp:30:  Using deprecated casting style.  Use static_cast<double>(...) instead  [readability/casting] [4]
-./src/talker.cpp:46:  Redundant blank line at the start of a code block should be deleted.  [whitespace/blank_line] [2]
 Done processing ./src/talker.cpp
-./src/string_flip.cpp:14:  Found C system header after C++ system header. Should be: string_flip.h, c system, c++ system, other.  [build/include_order] [4]
-./src/string_flip.cpp:26:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::StringFlip::Request &req  [runtime/references] [2]
-./src/string_flip.cpp:27:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::StringFlip::Response &res  [runtime/references] [2]
+./src/string_flip.cpp:25:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::StringFlip::Request &req  [runtime/references] [2]
+./src/string_flip.cpp:26:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::StringFlip::Response &res  [runtime/references] [2]
 Done processing ./src/string_flip.cpp
-Total errors found: 9
+Total errors found: 2
 
 
