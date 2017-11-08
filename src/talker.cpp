@@ -9,6 +9,7 @@
  */
 
 #include <sstream>
+#include <string>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "beginner_tutorials/StringFlip.h"
@@ -64,7 +65,7 @@ int main(int argc, char **argv) {
 
     ros::spinOnce();
 
-    ROS_DEBUG("Publishing messages at [%s] Hz", loopRate);
+    ROS_DEBUG("Waiting to publish next message");
     loop_rate.sleep();
     ++count;
   }
