@@ -17,9 +17,13 @@
 int main(int argc, char **argv) {
 
   ros::init(argc, argv, "talker");
-  double loopRate = 0.5;
-
   ros::NodeHandle n;
+
+  double loopRate;
+
+  ros::NodeHandle private_node_handle_("~");
+
+  private_node_handle_.param("loopRate", loopRate, double(1));
 
   ros::ServiceClient client = n.serviceClient<beginner_tutorials::StringFlip>("string_flip");
 
@@ -60,7 +64,7 @@ int main(int argc, char **argv) {
 
     ros::spinOnce();
 
-    ROS_DEBUG("Sleeping for %d seconds", 1/loopRate);
+    ROS_DEBUG("Publishing messages at [%s] Hz", loopRate);
     loop_rate.sleep();
     ++count;
   }
