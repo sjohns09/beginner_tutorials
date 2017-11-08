@@ -13,9 +13,9 @@ This tutorial also demonstrates how a ROS service works to expect a message and 
 
 ## Build
 
- - Clone repo (https://github.com/sjohns09/beginner_tutorials.git) to catkin workspace using
+ - Clone repo (https://github.com/sjohns09/beginner_tutorials.git) to catkin workspace
  - Switch to Week10_HW branch
- - In catkin workspace root directory, run catkin_make. This will build the "beginner__tutorials" project.
+ - In catkin workspace root directory, run catkin_make. This will build the "beginner_tutorials" project.
  
  ```
  cd ~/catkin_ws/src
@@ -34,8 +34,6 @@ This tutorial also demonstrates how a ROS service works to expect a message and 
  - In a new terminal, run the subscriber node ($ rosrun beginner\_tutorials listener)
  
 ** In each new terminal source the setup file ($ source ./devel/setup.bash)
-
-The listener will display the messages it hears from the topic, which should match up with what is being published by the talker.
 
 ## Run (Launch File)
 
