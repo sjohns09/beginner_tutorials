@@ -1,0 +1,25 @@
+<launch>
+	
+	<arg name="loop_rate"/>
+	
+	<node
+		pkg="beginner_tutorials" 
+		type="string_flip" 
+		name="string_flip"
+		required="true"
+	/>
+	<node 
+		pkg="beginner_tutorials" 
+		type="listener" 
+		name="listener"
+		launch-prefix="xterm -e"
+	/>
+	<node 
+		pkg="beginner_tutorials" 
+		type="talker" 
+		name="talker"
+		launch-prefix="xterm -e">
+		<param name="loopRate" value="$(arg loop_rate)" type="double"/>
+	</node>
+
+</launch>
