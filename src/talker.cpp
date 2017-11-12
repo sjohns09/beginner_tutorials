@@ -40,6 +40,7 @@
 
 #include <sstream>
 #include <string>
+#include <tf/transform_broadcaster.h>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "beginner_tutorials/StringFlip.h"
@@ -48,19 +49,20 @@ int main(int argc, char **argv) {
   ros::init(argc, argv, "talker");
 
   ros::NodeHandle n;
-
-  double loopRate;
-
+  ros::NodeHandle tfn;
   ros::NodeHandle private_node_handle_("~");
 
-  private_node_handle_.param("loopRate", loopRate, static_cast<double>(1));
+  tf::TransformBroadcaster br;
+  tf::Transform transform;
 
+  // --- Service Request ---
+  double loopRate;
+
+  private_node_handle_.param("loopRate", loopRate, static_cast<double>(1));
   ros::ServiceClient client = n.serviceClient<beginner_tutorials::StringFlip>(
       "string_flip");
-
   beginner_tutorials::StringFlip srv;
   std::string flippedString;
-
   srv.request.input = "Something Strange is Coming...";
 
   ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
@@ -69,6 +71,20 @@ int main(int argc, char **argv) {
 
   int count = 0;
   while (ros::ok()) {
+
+    // --- Broadcast tf ---
+    transform.setOrigin(
+        tf::Vector3(2.0 * sin(ros::Time::now().toSec()),
+                    2.0 * cos(ros::Time::now().toSec()), 0.0));
+
+    tf::Quaternion q;
+    q.setEuler(count, count+count, -count);
+    transform.setRotation(q);
+
+    br.sendTransform(
+        tf::StampedTransform(transform, ros::Time::now(), "world", "talk"));
+
+    // -----Service Request -------
     if (client.call(srv)) {
       ROS_INFO("Calling Service StringFlip");
       flippedString = srv.response.output;
