@@ -3,7 +3,7 @@
  * messages over the ROS system.
  *
  * @author Samantha Johnson
- * @date November 7, 2017
+ * @date November 14, 2017
  * @license BSD 3-Clause License
  * @copyright (c) 2017, Samantha Johnson
  * All rights reserved.
@@ -35,12 +35,13 @@
  *
  * @details This is the node that publishes messages to a topic.
  * It also calls the service StringFlip on the message before it
- * publishes that message.
+ * publishes that message, as well as broadcasts a frame transform
+ * between the world and a derived talker frame.
  */
 
+#include <tf/transform_broadcaster.h>
 #include <sstream>
 #include <string>
-#include <tf/transform_broadcaster.h>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "beginner_tutorials/StringFlip.h"
@@ -71,7 +72,6 @@ int main(int argc, char **argv) {
 
   int count = 0;
   while (ros::ok()) {
-
     // --- Broadcast tf ---
     transform.setOrigin(
         tf::Vector3(2.0 * sin(ros::Time::now().toSec()),

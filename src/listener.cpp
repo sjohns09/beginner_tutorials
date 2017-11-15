@@ -2,7 +2,7 @@
  * @brief This tutorial demonstrates the simple receiving of messages over the ROS system.
  *
  * @author Samantha Johnson
- * @date November 7, 2017
+ * @date November 14, 2017
  * @license BSD 3-Clause License
  * @copyright (c) 2017, Samantha Johnson
  * All rights reserved.
