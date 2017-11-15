@@ -62,7 +62,7 @@ To play back the bag file and show it working with the listener node:
  - In another terminal run the listener node
  
  ```
- rosrun beginner\_tutorials listener
+ rosrun beginner_tutorials listener
  ```
  - In another terminal play the bag file
  
