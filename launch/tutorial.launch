@@ -1,6 +1,7 @@
 <launch>
 	
 	<arg name="loop_rate"/>
+	<arg name="record_bag"/>
 	
 	<node
 		pkg="beginner_tutorials" 
@@ -21,5 +22,12 @@
 		launch-prefix="xterm -e">
 		<param name="loopRate" value="$(arg loop_rate)" type="double"/>
 	</node>
+	<node
+		pkg="rosbag"
+		type="record"
+		name="tutorial_bag"
+		args="-a --duration=20 -O tutorialWeek11.bag"
+		if="$(arg record_bag)"
+	/>
 
 </launch>

@@ -1,5 +1,5 @@
-/** @file string_flip.cpp
- * @brief This service flips the contents of a string.
+/** @file TutorialTests.cpp
+ * @brief This contains tests for the beginner_tutorials package
  *
  * @author Samantha Johnson
  * @date November 14, 2017
@@ -32,42 +32,41 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * @details This service takes a string as a request, reverses the contents
- * of that string, and then returns the flipped string as the response.
+ * @details This contains the level 2 integration tests for the talker
+ * node and the StringFlip service
  */
 
-#include <sstream>
+#include <gtest/gtest.h>
 #include "ros/ros.h"
-#include "std_msgs/String.h"
 #include "beginner_tutorials/StringFlip.h"
+#include "std_msgs/String.h"
 
-  /**
-   * @brief A method that reverses the characters in a request string
-   * and sets the response to this flipped string
-   * @param Input is the request which is a string
-   * @param Input is the response which is a string
-   * @return Output is a boolean showing completion of request
-   */
-bool string_flip(beginner_tutorials::StringFlip::Request &req,
-                             beginner_tutorials::StringFlip::Response &res) {
-  std::string str = req.input;
 
-  ROS_INFO("Flipping String");
+void callback1(const std_msgs::String::ConstPtr& msg) {
+  EXPECT_EQ(msg->data.c_str(), "Something Strange is Coming...");
+}
 
-  reverse(str.begin(), str.end());
-  res.output = str;
+TEST(StringFlip_test, testListenForMessageFromTalkerNode) {
+  ros::NodeHandle n;
 
-  return true;
+  ros::Subscriber sub = n.subscribe("chatter", 1, callback1);
+}
+
+TEST(StringFilp_test, testCallStringFlipReturnsFlippedString) {
+  ros::NodeHandle node;
+  ros::ServiceClient client =
+      node.serviceClient<beginner_tutorials::StringFlip>("string_flip");
+  beginner_tutorials::StringFlip srv;
+  srv.request.input = "FLIP";
+  client.call(srv);
+  std::string flippedString = srv.response.output;
+
+  EXPECT_EQ(flippedString, "PILF");
 }
 
 int main(int argc, char **argv) {
-  ros::init(argc, argv, "string_flip_server");
-  ros::NodeHandle n;
+  ros::init(argc, argv, "TutorialTests");
 
-  ros::ServiceServer service = n.advertiseService("string_flip", string_flip);
-  ROS_INFO("Ready to flip string!");
-
-  ros::spin();
-
-  return 0;
+  testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }

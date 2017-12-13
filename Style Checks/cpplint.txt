@@ -1,8 +1,10 @@
 Done processing ./src/listener.cpp
 Done processing ./src/talker.cpp
-./src/string_flip.cpp:25:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::StringFlip::Request &req  [runtime/references] [2]
-./src/string_flip.cpp:26:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::StringFlip::Response &res  [runtime/references] [2]
+./src/string_flip.cpp:51:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::StringFlip::Request &req  [runtime/references] [2]
+./src/string_flip.cpp:52:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::StringFlip::Response &res  [runtime/references] [2]
 Done processing ./src/string_flip.cpp
+Done processing ./test/TutorialTests.cpp
 Total errors found: 2
+
 
 

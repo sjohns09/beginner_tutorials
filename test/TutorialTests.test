@@ -1,0 +1,19 @@
+<launch>
+	<node 
+  		pkg="beginner_tutorials" 
+  		type="string_flip" 
+  		name="string_flip"
+  		required="true" 
+  	/>
+  	<node 
+		pkg="beginner_tutorials" 
+		type="talker" 
+		name="talker" >
+		<param name="loopRate" value="0.5" type="double"/>
+	</node>
+  	<test 
+  		test-name="TutorialTests" 
+  		pkg="beginner_tutorials" 
+  		type="TutorialTests" 
+  	/>
+</launch>
